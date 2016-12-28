@@ -1,6 +1,8 @@
 class Item < ActiveRecord::Base
+  include Commentable
+
   belongs_to :user
-  has_many :comments
+
 
   scope :published, ->{ where('published = ? AND published_on > ?', true, 2.days.ago) }
   scope :by_user, ->(user) { where(user: user) if user.present? }
