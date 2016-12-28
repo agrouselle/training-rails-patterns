@@ -25,4 +25,17 @@ class Item < ActiveRecord::Base
   # def front_page?
   #   published_on > 2.days.ago
   # end
+
+  # Bad example
+  # Placing serialization logic in the model breaks the Single Responsibility Principle :
+  # This model is now responsible for persisting and validating, but also for formatting
+  # to custom JSON
+  # def as_json(params={})
+  #   super(except: [:created_at, :updated_at], include: {comments: {only: :id}})
+  # end
+
+  # Defines a custom serializer for this model
+  def active_model_serializer
+    CustomItemSerializer
+  end
 end

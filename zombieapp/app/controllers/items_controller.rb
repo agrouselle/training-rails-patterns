@@ -47,12 +47,43 @@ class ItemsController < ApplicationController
     # Better example
     # Using scopes
     @items = Item.published.by_user(nil)
+
+
+    # Bad example
+    # Serialization logic should not be placed in the controller
+    # respond_to do |format|
+    #   format.html
+    #   format.json {
+    #     render json: @items,
+    #            except: [:created_at, :updated_at],
+    #            include: { comments: {only: :id} }
+    #   }
+    # end
+
+    respond_to do |format|
+      format.html
+
+      # Render json using the default serializer ItemSerializer
+      format.json { render json: @items }
+
+      # Render json using a specific serializer
+      # format.json { render json: @items, serializer: CustomItemSerializer }
+
+      # Render json without the root
+      # format.json { render json: @items, root: false }
+    end
+
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
     @item_decorator = ItemDecorator.new(@item)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @item}
+    end
   end
 
   # GET /items/new

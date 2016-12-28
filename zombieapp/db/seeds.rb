@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Item.create!(name: "Item1", published:true, published_on: 1.day.ago, is_approved: true, image:'')
+Item.create!(name: "Item2", published:true, published_on: 2.day.ago, is_approved: true, image:'')
+Item.create!(name: "Item3", published:true, published_on: 3.day.ago, is_approved: true, image:'')
