@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration
       t.timestamp :published_on
       t.references :user
       t.boolean :is_approved
+      t.string :image
       t.timestamps null: false
     end
   end

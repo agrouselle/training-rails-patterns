@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   resources :items do
     member do
       post 'publish'

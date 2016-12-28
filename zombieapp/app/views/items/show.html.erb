@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+  <% if @item_decorator.front_page? %>
+    Image: <%= image_tag(@item_decorator.image) %>
+  <% end %>
+</p>
+
+<p>
+Publication date: <%= @item_decorator.publication_date %>
+</p>
+
+<article class="<%= @item_decorator.classes %>">
+  <%= @item_decorator.user %>
+</article>
+
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

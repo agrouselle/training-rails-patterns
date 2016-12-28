@@ -52,6 +52,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @item_decorator = ItemDecorator.new(@item)
   end
 
   # GET /items/new
