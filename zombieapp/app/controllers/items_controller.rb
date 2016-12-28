@@ -37,7 +37,16 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    # Bad example
+    # Exposes implementation details in controller
+    # Produces unnecessary duplication
+    # Complicates writing tests
+    # => Should be placed in a model
+    # @items = Item.where('published = ? AND published_on > ?', true, 2.days.ago)
+
+    # Better example
+    # Using scopes
+    @items = Item.published.by_user(nil)
   end
 
   # GET /items/1
