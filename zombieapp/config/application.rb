@@ -22,5 +22,8 @@ module Zombieapp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Prevents sensitive information from being added to the logs
+    config.filter_parameters += [:ssn]
   end
 end

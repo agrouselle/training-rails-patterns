@@ -38,4 +38,20 @@ class Item < ActiveRecord::Base
   def active_model_serializer
     CustomItemSerializer
   end
+
+  def self.recent_ids_names
+    # Okay but returns all columns in the DB table while we only need the id column
+    # where('published_on < ?', 2.days.ago)
+
+    # Reduces the number of columns loaded from the database
+    # Only the id column is set on the Item objects
+    # But still creates a different Item object for each row returned in the DB
+    # select(:id).where('published_on < ?', 2.days.ago)
+
+    # Use pluck to return an array of values instead of ActiveRecord objects
+    # Avoiding creation of AR speeds things up
+    # where('published_on < ?', 2.days.ago).pluck(:id)  # => [1, 2, 3]
+    where('published_on > ?', 2.days.ago).pluck(:id, :name)  # => [[1, "Item1"]]
+
+  end
 end

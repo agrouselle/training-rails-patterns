@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# It's a good practice to specify which version of Ruby to use
+# You can also add a .ruby-version file to do this
+ruby '2.2.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
